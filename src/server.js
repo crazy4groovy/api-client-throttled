@@ -10,13 +10,13 @@ const limits = {
 };
 
 // reduce API LIMITS (on a timer)
-// Note: this will keep app instance running perpetually!
 const timerId = setInterval(() => {
   limits.calls -= 2;
   limits.calls = Math.max(limits.calls, 0);
   limits.time /= 1.1;
   limits.cpu /= 1.2;
 }, 1000);
+timerId.unref();
 
 // increase API LIMITS (per call)
 // Note: arbitrary algorithm!

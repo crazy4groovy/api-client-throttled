@@ -61,7 +61,6 @@ function setThunkStartedRecently(val = true) {
 }
 
 let timerId;
-
 module.exports.startTimer = function startTimer(intervalMs = 2000) {
   if (timerId !== undefined) return;
 
@@ -70,6 +69,7 @@ module.exports.startTimer = function startTimer(intervalMs = 2000) {
     console.log("THUNK FREE PASSTHU LOCK!");
     setThunkStartedRecently(false);
   }, intervalMs);
+  // timerId.unref(); // this would make clearTimer() unneeded!
 
   return () => clearTimer();
 };
